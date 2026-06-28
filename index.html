@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incredible India — Discover the Soul of a Nation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --saffron:#FF9933;
+  --gold:#F5C842;
+  --indigo:#1A1240;
+  --deep:#0D0A20;
+  --glass:rgba(255,255,255,0.06);
+  --glass-border:rgba(255,255,255,0.12);
+  --text:#F0EDE8;
+  --muted:#A09CC0;
+  --green:#138808;
+  --accent:#FF6B35;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--deep)}
+::-webkit-scrollbar-thumb{background:var(--saffron);border-radius:3px}
+
+/* ─── HERO ─── */
+#hero{
+  position:relative;height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  background:linear-gradient(160deg,#0D0A20 0%,#1A1240 50%,#0A1A30 100%);
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://images.unsplash.com/photo-1564507592333-c60657eea523?w=1600&q=80') center/cover no-repeat;
+  opacity:0.18;
+  transform:scale(1.05);
+  animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{
+  position:absolute;width:2px;height:2px;background:var(--gold);
+  border-radius:50%;animation:float linear infinite;opacity:0;
+}
+@keyframes float{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{transform:translateY(-20px) rotate(720deg);opacity:0}
+}
+.hero-eyebrow{
+  font-family:'Caveat',cursive;font-size:1.4rem;color:var(--gold);
+  letter-spacing:0.08em;margin-bottom:1rem;opacity:0;
+  animation:fadeUp 0.8s 0.3s ease forwards;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,7rem);
+  font-weight:900;line-height:1.0;color:#fff;
+  opacity:0;animation:fadeUp 0.8s 0.5s ease forwards;
+}
+.hero-title span{color:var(--saffron)}
+.hero-sub{
+  font-size:1.1rem;color:var(--muted);max-width:500px;line-height:1.7;
+  margin-top:1.2rem;opacity:0;animation:fadeUp 0.8s 0.7s ease forwards;
+}
+.hero-cta{
+  display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:fadeUp 0.8s 0.9s ease forwards;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--saffron),var(--accent));
+  color:#fff;border:none;padding:14px 32px;border-radius:50px;
+  font-size:1rem;font-weight:600;cursor:pointer;
+  box-shadow:0 4px 20px rgba(255,153,51,0.4);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,153,51,0.5)}
+.btn-ghost{
+  background:transparent;color:#fff;border:1.5px solid var(--glass-border);
+  padding:14px 32px;border-radius:50px;font-size:1rem;font-weight:500;
+  cursor:pointer;backdrop-filter:blur(8px);transition:all 0.2s;
+}
+.btn-ghost:hover{background:var(--glass);border-color:var(--saffron)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+  opacity:0;animation:fadeUp 0.8s 1.2s ease forwards;
+}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--saffron),transparent);animation:scrollAnim 2s ease-in-out infinite}
+@keyframes scrollAnim{0%,100%{opacity:0.3;transform:scaleY(0.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ─── NAV ─── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 5%;display:flex;align-items:center;justify-content:space-between;
+  height:64px;transition:background 0.3s,backdrop-filter 0.3s;
+}
+#nav.scrolled{background:rgba(13,10,32,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--glass-border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.nav-logo span{color:var(--saffron)}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--saffron)}
+.nav-right{display:flex;gap:0.75rem;align-items:center}
+.lang-btn{background:var(--glass);border:1px solid var(--glass-border);color:#fff;padding:6px 14px;border-radius:20px;cursor:pointer;font-size:0.85rem;backdrop-filter:blur(8px);transition:all 0.2s}
+.lang-btn:hover{border-color:var(--saffron)}
+.lang-drop{position:absolute;top:70px;right:5%;background:rgba(20,16,40,0.98);border:1px solid var(--glass-border);border-radius:12px;overflow:hidden;display:none;z-index:200;backdrop-filter:blur(16px);min-width:140px}
+.lang-drop div{padding:10px 18px;cursor:pointer;font-size:0.9rem;transition:background 0.15s}
+.lang-drop div:hover{background:rgba(255,153,51,0.15);color:var(--saffron)}
+
+/* ─── MAIN LAYOUT ─── */
+#app{display:none}
+main{max-width:1200px;margin:0 auto;padding:2rem 5%}
+
+/* ─── SECTION HEADER ─── */
+.sec-header{text-align:center;margin-bottom:3rem}
+.sec-eyebrow{font-family:'Caveat',cursive;color:var(--gold);font-size:1.1rem;display:block;margin-bottom:0.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff}
+.sec-line{width:48px;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold));margin:1rem auto 0;border-radius:2px}
+
+/* ─── CATEGORY PILLS ─── */
+.cat-nav{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+.cat-pill{
+  background:var(--glass);border:1px solid var(--glass-border);
+  color:var(--muted);padding:8px 20px;border-radius:50px;
+  font-size:0.88rem;font-weight:500;cursor:pointer;
+  transition:all 0.2s;white-space:nowrap;
+}
+.cat-pill.active,.cat-pill:hover{background:rgba(255,153,51,0.15);border-color:var(--saffron);color:var(--saffron)}
+
+/* ─── DESTINATION GRID ─── */
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.dest-card{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:16px;overflow:hidden;cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+  animation:fadeIn 0.4s ease both;
+}
+.dest-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(255,153,51,0.2)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dest-img{
+  width:100%;height:180px;object-fit:cover;
+  background:linear-gradient(135deg,#1A1240,#0A1A30);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--muted);
+}
+.dest-body{padding:1.2rem}
+.dest-badge{display:inline-block;background:rgba(255,153,51,0.15);color:var(--saffron);font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.6rem}
+.dest-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.dest-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.dest-actions{display:flex;gap:0.5rem}
+.dest-actions button{flex:1;padding:8px;border:none;border-radius:8px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn-map{background:rgba(255,153,51,0.15);color:var(--saffron);border:1px solid rgba(255,153,51,0.3)}
+.btn-map:hover{background:rgba(255,153,51,0.25)}
+.btn-save{background:var(--glass);color:var(--muted);border:1px solid var(--glass-border)}
+.btn-save:hover{color:var(--gold);border-color:var(--gold)}
+.btn-save.saved{color:var(--gold);border-color:var(--gold);background:rgba(245,200,66,0.1)}
+
+/* ─── STATS BAR ─── */
+.stats-bar{
+  display:flex;gap:0;background:linear-gradient(135deg,rgba(255,153,51,0.1),rgba(245,200,66,0.05));
+  border:1px solid var(--glass-border);border-radius:16px;
+  margin:3rem 0;overflow:hidden;
+}
+.stat-item{flex:1;padding:2rem;text-align:center;border-right:1px solid var(--glass-border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--saffron);display:block}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.05em}
+
+/* ─── TRIP PLANNER ─── */
+.planner-box{
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:20px;padding:2rem;
+}
+.planner-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:600px){.planner-grid{grid-template-columns:1fr}}
+.plan-select,.plan-input{
+  width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);
+  color:#fff;padding:12px 16px;border-radius:10px;font-size:0.9rem;
+  font-family:'Inter',sans-serif;transition:border-color 0.2s;
+}
+.plan-select option{background:#1A1240;color:#fff}
+.plan-select:focus,.plan-input:focus{outline:none;border-color:var(--saffron)}
+.plan-btn{
+  width:100%;margin-top:1rem;padding:14px;
+  background:linear-gradient(135deg,var(--saffron),var(--accent));
+  border:none;border-radius:10px;color:#fff;font-size:1rem;
+  font-weight:600;cursor:pointer;transition:opacity 0.2s;
+}
+.plan-btn:hover{opacity:0.9}
+.plan-result{
+  margin-top:1.5rem;background:rgba(255,255,255,0.03);
+  border:1px solid var(--glass-border);border-radius:12px;
+  padding:1.5rem;min-height:100px;display:none;
+}
+
+/* ─── HOTELS ─── */
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.hotel-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:transform 0.2s}
+.hotel-card:hover{transform:translateY(-4px)}
+.hotel-tier{width:100%;height:8px}
+.hotel-tier.luxury{background:linear-gradient(90deg,#F5C842,#FF9933)}
+.hotel-tier.budget{background:linear-gradient(90deg,#138808,#00CC66)}
+.hotel-tier.family{background:linear-gradient(90deg,#6C63FF,#A855F7)}
+.hotel-body{padding:1.5rem}
+.hotel-name{font-family:'Playfair Display',serif;font-size:1.15rem;color:#fff;margin-bottom:0.5rem}
+.amenity-list{display:flex;flex-wrap:wrap;gap:0.4rem;margin:0.8rem 0 1.2rem}
+.amenity{font-size:0.75rem;background:rgba(255,255,255,0.06);color:var(--muted);padding:4px 10px;border-radius:20px}
+.price-range{font-size:0.85rem;color:var(--gold);font-weight:600;margin-bottom:1rem}
+.hotel-actions{display:flex;gap:0.5rem}
+.hotel-actions button{flex:1;padding:9px;border:none;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+
+/* ─── TRANSPORT ─── */
+.transport-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.t-tab{
+  flex:1;min-width:100px;padding:14px;text-align:center;
+  background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:12px;cursor:pointer;transition:all 0.2s;font-size:0.9rem;
+  font-weight:500;color:var(--muted);
+}
+.t-tab.active,.t-tab:hover{background:rgba(255,153,51,0.15);border-color:var(--saffron);color:var(--saffron)}
+.transport-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.t-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:1.2rem;transition:transform 0.2s}
+.t-card:hover{transform:translateY(-3px)}
+.t-city{font-weight:600;color:#fff;margin-bottom:0.6rem;font-size:1rem}
+.t-info{font-size:0.8rem;color:var(--muted);margin-bottom:1rem}
+.t-btns{display:flex;gap:0.5rem}
+.t-btns button{flex:1;padding:8px;border:none;border-radius:7px;font-size:0.78rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+
+/* ─── AI CHAT ─── */
+.chat-wrap{display:flex;flex-direction:column;height:500px;background:var(--glass);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden}
+.chat-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:0.75rem}
+.chat-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--saffron),var(--accent));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.chat-info .name{font-weight:600;color:#fff;font-size:0.95rem}
+.chat-info .status{font-size:0.75rem;color:#4ADE80}
+.chat-msgs{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.msg{max-width:80%;padding:12px 16px;border-radius:16px;font-size:0.88rem;line-height:1.6;animation:fadeIn 0.3s ease}
+.msg.bot{background:rgba(255,255,255,0.07);color:var(--text);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.user{background:linear-gradient(135deg,var(--saffron),var(--accent));color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg.typing span{display:inline-block;width:6px;height:6px;background:var(--muted);border-radius:50%;animation:blink 1.2s ease infinite}
+.msg.typing span:nth-child(2){animation-delay:0.2s}
+.msg.typing span:nth-child(3){animation-delay:0.4s}
+@keyframes blink{0%,100%{opacity:0.2}50%{opacity:1}}
+.chat-footer{padding:1rem 1.5rem;border-top:1px solid var(--glass-border);display:flex;gap:0.75rem;align-items:center}
+.chat-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:#fff;padding:10px 16px;border-radius:25px;font-size:0.9rem;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
+.chat-input:focus{border-color:var(--saffron)}
+.chat-send{background:linear-gradient(135deg,var(--saffron),var(--accent));border:none;width:40px;height:40px;border-radius:50%;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+.chat-send:hover{transform:scale(1.1)}
+.quick-btns{display:flex;gap:0.5rem;padding:0 1.5rem 1rem;flex-wrap:wrap}
+.quick-btn{background:rgba(255,153,51,0.1);border:1px solid rgba(255,153,51,0.25);color:var(--saffron);padding:6px 14px;border-radius:20px;font-size:0.78rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.quick-btn:hover{background:rgba(255,153,51,0.2)}
+
+/* ─── WISHLIST ─── */
+.wishlist-empty{text-align:center;padding:3rem;color:var(--muted)}
+.wishlist-empty .icon{font-size:3rem;margin-bottom:1rem}
+.wishlist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.wish-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:1rem;display:flex;justify-content:space-between;align-items:flex-start}
+.wish-name{font-weight:600;color:#fff;font-size:0.95rem;margin-bottom:0.3rem}
+.wish-cat{font-size:0.75rem;color:var(--muted)}
+.wish-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;transition:color 0.2s;padding:2px}
+.wish-remove:hover{color:#FF6B6B}
+
+/* ─── EMERGENCY ─── */
+.emer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.emer-card{background:var(--glass);border:1px solid rgba(255,80,80,0.2);border-radius:14px;padding:1.5rem;text-align:center;transition:transform 0.2s}
+.emer-card:hover{transform:translateY(-3px);border-color:rgba(255,80,80,0.4)}
+.emer-icon{font-size:2rem;margin-bottom:0.75rem;display:block}
+.emer-name{font-weight:600;color:#fff;margin-bottom:0.3rem}
+.emer-num{color:var(--saffron);font-size:1.3rem;font-weight:700;font-family:'Playfair Display',serif;margin-bottom:0.8rem}
+.emer-call{width:100%;padding:8px;background:rgba(255,80,80,0.15);border:1px solid rgba(255,80,80,0.3);border-radius:8px;color:#FF6B6B;font-weight:600;font-size:0.85rem;cursor:pointer;transition:all 0.2s}
+.emer-call:hover{background:rgba(255,80,80,0.25)}
+
+/* ─── WEATHER ─── */
+.weather-bar{
+  background:linear-gradient(135deg,rgba(100,149,237,0.1),rgba(255,153,51,0.08));
+  border:1px solid var(--glass-border);border-radius:16px;padding:1.5rem 2rem;
+  display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;justify-content:center;
+  margin-bottom:2rem;
+}
+.weather-item{text-align:center}
+.weather-item .city{font-size:0.8rem;color:var(--muted);margin-bottom:0.25rem}
+.weather-item .temp{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff}
+.weather-item .cond{font-size:0.75rem;color:var(--saffron);margin-top:0.2rem}
+
+/* ─── SECTION WRAPPER ─── */
+.section{padding:5rem 0;display:none}
+.section.active{display:block}
+.section-home{display:block}
+
+/* ─── FOOTER ─── */
+footer{
+  background:rgba(255,255,255,0.02);border-top:1px solid var(--glass-border);
+  padding:2rem 5%;text-align:center;color:var(--muted);font-size:0.85rem;
+}
+footer span{color:var(--saffron)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .stats-bar{flex-direction:column}
+  .stat-item{border-right:none;border-bottom:1px solid var(--glass-border)}
+  .stat-item:last-child{border-bottom:none}
+  .nav-links{display:none}
+}
+
+/* ─── LIGHTBOX ─── */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:999;display:none;align-items:center;justify-content:center;flex-direction:column;gap:1rem;padding:2rem}
+#lightbox.open{display:flex}
+#lightbox img{max-width:90vw;max-height:75vh;border-radius:12px;object-fit:contain}
+#lightbox .lb-caption{color:#fff;font-size:1rem;font-family:'Playfair Display',serif}
+#lightbox .lb-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;line-height:1}
+
+/* ─── GALLERY ─── */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.gallery-item{border-radius:12px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:var(--glass);transition:transform 0.2s}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+
+/* ─── TOAST ─── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:500;
+  background:rgba(20,16,40,0.96);border:1px solid var(--glass-border);
+  color:#fff;padding:12px 20px;border-radius:10px;font-size:0.9rem;
+  transform:translateY(20px);opacity:0;transition:all 0.3s;pointer-events:none;
+  backdrop-filter:blur(12px);
+}
+.toast.show{transform:none;opacity:1}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+  <div class="lb-caption" id="lb-cap"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Incredible<span>India</span></div>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showSection('home')">Home</a></li>
+    <li><a href="#" onclick="showSection('destinations')">Destinations</a></li>
+    <li><a href="#" onclick="showSection('hotels')">Hotels</a></li>
+    <li><a href="#" onclick="showSection('transport')">Transport</a></li>
+    <li><a href="#" onclick="showSection('planner')">Trip Planner</a></li>
+    <li><a href="#" onclick="showSection('wishlist')">Wishlist <span id="wl-count" style="color:var(--saffron)"></span></a></li>
+    <li><a href="#" onclick="showSection('chat')">AI Guide</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-btn" onclick="toggleLang()">🌐 <span id="cur-lang">EN</span></button>
+    <div class="lang-drop" id="langDrop">
+      <div onclick="setLang('en')">🇬🇧 English</div>
+      <div onclick="setLang('ta')">🇮🇳 தமிழ்</div>
+      <div onclick="setLang('hi')">🇮🇳 हिंदी</div>
+      <div onclick="setLang('ur')">🇵🇰 اردو</div>
+    </div>
+  </div>
+</nav>
+
+<!-- LOGIN -->
+<div id="loginScreen" style="height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#0D0A20,#1A1240,#0A1A30);">
+  <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);padding:2.5rem;width:360px;border-radius:24px;text-align:center">
+    <div style="font-size:3rem;margin-bottom:0.5rem">🇮🇳</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.5rem">Welcome Back</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:2rem">Sign in to explore Incredible India</p>
+    <input id="loginEmail" type="email" placeholder="Email address" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:#fff;padding:12px 16px;border-radius:10px;font-size:0.95rem;margin-bottom:1rem;font-family:'Inter',sans-serif;outline:none"><br>
+    <input id="loginPass" type="password" placeholder="Password" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);color:#fff;padding:12px 16px;border-radius:10px;font-size:0.95rem;margin-bottom:1.5rem;font-family:'Inter',sans-serif;outline:none">
+    <button onclick="doLogin()" style="width:100%;padding:13px;background:linear-gradient(135deg,#FF9933,#FF6B35);border:none;border-radius:10px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer">Explore India →</button>
+    <p style="margin-top:1rem;font-size:0.78rem;color:var(--muted)">Use any email & password to continue</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-eyebrow">✦ Discover · Explore · Experience ✦</div>
+  <h1 class="hero-title">Incredible<br><span>India</span></h1>
+  <p class="hero-sub" id="heroSub">From snow-capped Himalayas to golden beaches — every corner of India tells a story worth living.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="showSection('destinations');scrollToMain()">Explore Destinations</button>
+    <button class="btn-ghost" onclick="showSection('planner');scrollToMain()">Plan My Trip</button>
+  </div>
+  <div class="scroll-hint"><span>Scroll to explore</span><div class="scroll-line"></div></div>
+</section>
+
+<main id="mainContent">
+
+<!-- HOME SECTION -->
+<div class="section section-home" id="sec-home">
+  <!-- WEATHER BAR -->
+  <div class="weather-bar">
+    <div style="font-size:0.85rem;font-weight:600;color:var(--muted);margin-right:0.5rem">🌡 Live Weather</div>
+    <div class="weather-item"><div class="city">Delhi</div><div class="temp">38°C</div><div class="cond">☀️ Sunny</div></div>
+    <div class="weather-item"><div class="city">Mumbai</div><div class="temp">32°C</div><div class="cond">🌦 Partly Cloudy</div></div>
+    <div class="weather-item"><div class="city">Ooty</div><div class="temp">18°C</div><div class="cond">🌿 Pleasant</div></div>
+    <div class="weather-item"><div class="city">Jaipur</div><div class="temp">41°C</div><div class="cond">🌵 Hot & Dry</div></div>
+    <div class="weather-item"><div class="city">Manali</div><div class="temp">12°C</div><div class="cond">❄️ Cool</div></div>
+    <div class="weather-item"><div class="city">Goa</div><div class="temp">29°C</div><div class="cond">🌊 Breezy</div></div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-num">29</span><div class="stat-label">States & UTs</div></div>
+    <div class="stat-item"><span class="stat-num">40+</span><div class="stat-label">UNESCO Sites</div></div>
+    <div class="stat-item"><span class="stat-num">6</span><div class="stat-label">Seasons</div></div>
+    <div class="stat-item"><span class="stat-num">1000+</span><div class="stat-label">Languages</div></div>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="sec-header">
+    <span class="sec-eyebrow">What are you looking for?</span>
+    <h2 class="sec-title" id="homeTitle">Plan Your Perfect Journey</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-bottom:3rem">
+    <div onclick="showSection('destinations')" style="background:rgba(255,153,51,0.08);border:1px solid rgba(255,153,51,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🏔</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Destinations</div>
+      <div style="font-size:0.78rem;color:var(--muted)">40+ places</div>
+    </div>
+    <div onclick="showSection('hotels')" style="background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🏨</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Hotels</div>
+      <div style="font-size:0.78rem;color:var(--muted)">Luxury to Budget</div>
+    </div>
+    <div onclick="showSection('transport')" style="background:rgba(100,149,237,0.08);border:1px solid rgba(100,149,237,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🚆</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Transport</div>
+      <div style="font-size:0.78rem;color:var(--muted)">Bus, Train, Flight</div>
+    </div>
+    <div onclick="showSection('planner')" style="background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">📅</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Trip Planner</div>
+      <div style="font-size:0.78rem;color:var(--muted)">AI-powered</div>
+    </div>
+    <div onclick="showSection('gallery')" style="background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🖼</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Gallery</div>
+      <div style="font-size:0.78rem;color:var(--muted)">Photo collection</div>
+    </div>
+    <div onclick="showSection('emergency')" style="background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);border-radius:14px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform=''">
+      <div style="font-size:2rem;margin-bottom:0.6rem">🚨</div>
+      <div style="font-weight:600;color:#fff;margin-bottom:0.3rem">Emergency</div>
+      <div style="font-size:0.78rem;color:var(--muted)">Helpline numbers</div>
+    </div>
+  </div>
+</div>
+
+<!-- DESTINATIONS -->
+<div class="section" id="sec-destinations">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Explore India</span>
+    <h2 class="sec-title">Top Destinations</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="cat-nav" id="destCats">
+    <div class="cat-pill active" onclick="filterDest('all',this)">🗺 All</div>
+    <div class="cat-pill" onclick="filterDest('nature',this)">🌿 Nature</div>
+    <div class="cat-pill" onclick="filterDest('spiritual',this)">🕌 Spiritual</div>
+    <div class="cat-pill" onclick="filterDest('history',this)">🏛 History</div>
+    <div class="cat-pill" onclick="filterDest('wildlife',this)">🐘 Wildlife</div>
+    <div class="cat-pill" onclick="filterDest('beach',this)">🏖 Beaches</div>
+  </div>
+  <div class="dest-grid" id="destGrid"></div>
+</div>
+
+<!-- HOTELS -->
+<div class="section" id="sec-hotels">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Stay in Style</span>
+    <h2 class="sec-title">Hotels & Accommodation</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="hotel-grid" id="hotelGrid"></div>
+</div>
+
+<!-- TRANSPORT -->
+<div class="section" id="sec-transport">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Get Around</span>
+    <h2 class="sec-title">Transport Services</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="transport-tabs">
+    <div class="t-tab active" onclick="loadTransport('bus',this)">🚌 Bus</div>
+    <div class="t-tab" onclick="loadTransport('train',this)">🚆 Train</div>
+    <div class="t-tab" onclick="loadTransport('flight',this)">✈️ Flight</div>
+    <div class="t-tab" onclick="loadTransport('cab',this)">🚕 Cab</div>
+  </div>
+  <div class="transport-grid" id="transportGrid"></div>
+</div>
+
+<!-- TRIP PLANNER -->
+<div class="section" id="sec-planner">
+  <div class="sec-header">
+    <span class="sec-eyebrow">AI-Powered</span>
+    <h2 class="sec-title">Trip Planner</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="planner-box">
+    <p style="color:var(--muted);font-size:0.9rem">Tell us your preferences and we'll craft a personalized itinerary using AI.</p>
+    <div class="planner-grid">
+      <select class="plan-select" id="planFrom">
+        <option value="">🏙 Departing from...</option>
+        <option>Chennai</option><option>Mumbai</option><option>Delhi</option>
+        <option>Bangalore</option><option>Hyderabad</option><option>Kolkata</option>
+      </select>
+      <select class="plan-select" id="planTo">
+        <option value="">📍 Destination...</option>
+        <option>Manali</option><option>Goa</option><option>Kerala</option>
+        <option>Rajasthan</option><option>Ooty</option><option>Varanasi</option>
+        <option>Andaman Islands</option><option>Sikkim</option>
+      </select>
+      <select class="plan-select" id="planDays">
+        <option value="">📅 Trip duration...</option>
+        <option>3 Days</option><option>5 Days</option><option>7 Days</option><option>10 Days</option><option>14 Days</option>
+      </select>
+      <select class="plan-select" id="planBudget">
+        <option value="">💰 Budget range...</option>
+        <option>Budget (₹5,000–₹15,000)</option>
+        <option>Mid-range (₹15,000–₹40,000)</option>
+        <option>Luxury (₹40,000+)</option>
+      </select>
+      <select class="plan-select" id="planStyle">
+        <option value="">🎒 Travel style...</option>
+        <option>Adventure</option><option>Cultural & Heritage</option>
+        <option>Relaxation</option><option>Food & Cuisine</option>
+        <option>Wildlife</option><option>Spiritual</option>
+      </select>
+      <select class="plan-select" id="planPeople">
+        <option value="">👥 Travelling with...</option>
+        <option>Solo</option><option>Couple</option><option>Family</option><option>Friends Group</option>
+      </select>
+    </div>
+    <button class="plan-btn" onclick="generatePlan()">✨ Generate My Itinerary</button>
+    <div class="plan-result" id="planResult"></div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="section" id="sec-gallery">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Visual Journey</span>
+    <h2 class="sec-title">Photo Gallery</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</div>
+
+<!-- WISHLIST -->
+<div class="section" id="sec-wishlist">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Your Collection</span>
+    <h2 class="sec-title">Saved Destinations</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div id="wishlistContent"></div>
+</div>
+
+<!-- AI CHAT -->
+<div class="section" id="sec-chat">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Powered by AI</span>
+    <h2 class="sec-title">India Travel Guide</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="chat-wrap">
+    <div class="chat-header">
+      <div class="chat-avatar">🇮🇳</div>
+      <div class="chat-info">
+        <div class="name">India AI Guide</div>
+        <div class="status">● Online</div>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chatMsgs">
+      <div class="msg bot">Namaste! 🙏 I'm your personal India travel guide. Ask me anything — best time to visit, must-see places, local food, cultural tips, budget advice, or hidden gems!</div>
+    </div>
+    <div class="quick-btns">
+      <button class="quick-btn" onclick="quickChat('Best time to visit Rajasthan?')">Best time for Rajasthan?</button>
+      <button class="quick-btn" onclick="quickChat('Top street foods in Tamil Nadu?')">Tamil Nadu street food?</button>
+      <button class="quick-btn" onclick="quickChat('Budget trip from Chennai to Goa?')">Chennai → Goa on budget?</button>
+      <button class="quick-btn" onclick="quickChat('Hidden gems in Kerala?')">Kerala hidden gems?</button>
+    </div>
+    <div class="chat-footer">
+      <input class="chat-input" id="chatInput" placeholder="Ask about any place in India..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMERGENCY -->
+<div class="section" id="sec-emergency">
+  <div class="sec-header">
+    <span class="sec-eyebrow">Stay Safe</span>
+    <h2 class="sec-title">Emergency Helplines</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="emer-grid">
+    <div class="emer-card"><span class="emer-icon">🚓</span><div class="emer-name">Police</div><div class="emer-num">100</div><button class="emer-call" onclick="window.open('tel:100')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">🚑</span><div class="emer-name">Ambulance</div><div class="emer-num">108</div><button class="emer-call" onclick="window.open('tel:108')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">🔥</span><div class="emer-name">Fire Brigade</div><div class="emer-num">101</div><button class="emer-call" onclick="window.open('tel:101')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">📞</span><div class="emer-name">National Emergency</div><div class="emer-num">112</div><button class="emer-call" onclick="window.open('tel:112')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">👩</span><div class="emer-name">Women Helpline</div><div class="emer-num">181</div><button class="emer-call" onclick="window.open('tel:181')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">👶</span><div class="emer-name">Child Helpline</div><div class="emer-num">1098</div><button class="emer-call" onclick="window.open('tel:1098')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">🏥</span><div class="emer-name">Tourist Helpline</div><div class="emer-num">1800111363</div><button class="emer-call" onclick="window.open('tel:1800111363')">Call Now</button></div>
+    <div class="emer-card"><span class="emer-icon">✈️</span><div class="emer-name">Passport Seva</div><div class="emer-num">1800258-1800</div><button class="emer-call" onclick="window.open('https://passportindia.gov.in')">Visit Site</button></div>
+  </div>
+  <div style="background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);border-radius:14px;padding:1.5rem;margin-top:1.5rem;text-align:center">
+    <p style="color:var(--muted);margin-bottom:1rem;font-size:0.9rem">In any emergency, call India's universal helpline</p>
+    <button onclick="window.open('tel:112')" style="padding:14px 40px;background:linear-gradient(135deg,#FF4040,#CC0000);border:none;border-radius:50px;color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 4px 20px rgba(255,64,64,0.4)">🆘 Call 112 Now</button>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <p>Made with <span>♥</span> for Incredible India · B.Tech IT Portfolio Project</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem">Built with HTML · CSS · JavaScript · Claude AI</p>
+</footer>
+</div>
+
+<script>
+/* ─── DATA ─── */
+const destinations=[
+  {name:"Manali",cat:"nature",emoji:"🏔",desc:"Snow-clad mountains and adventure sports in Himachal Pradesh.",state:"Himachal Pradesh"},
+  {name:"Ooty",cat:"nature",emoji:"🌿",desc:"Queen of the Nilgiris — rolling tea gardens and cool misty air.",state:"Tamil Nadu"},
+  {name:"Munnar",cat:"nature",emoji:"☕",desc:"Emerald tea plantations stretching across Kerala's highlands.",state:"Kerala"},
+  {name:"Coorg",cat:"nature",emoji:"🌧",desc:"Scotland of India — lush coffee estates and waterfalls.",state:"Karnataka"},
+  {name:"Kodaikanal",cat:"nature",emoji:"🌸",desc:"Princess of hill stations with a serene star-shaped lake.",state:"Tamil Nadu"},
+  {name:"Darjeeling",cat:"nature",emoji:"🚂",desc:"Toy train rides and panoramic Kanchenjunga views.",state:"West Bengal"},
+  {name:"Tirupati",cat:"spiritual",emoji:"🛕",desc:"One of the world's most visited pilgrimage sites.",state:"Andhra Pradesh"},
+  {name:"Rameswaram",cat:"spiritual",emoji:"🌊",desc:"Sacred island temple connecting India's tip to Sri Lanka.",state:"Tamil Nadu"},
+  {name:"Meenakshi Temple",cat:"spiritual",emoji:"🕍",desc:"Towering gopurams adorned with thousands of colourful sculptures.",state:"Tamil Nadu"},
+  {name:"Golden Temple",cat:"spiritual",emoji:"✨",desc:"The gleaming heart of Sikhism in Amritsar's sacred lake.",state:"Punjab"},
+  {name:"Varanasi",cat:"spiritual",emoji:"🪔",desc:"World's oldest city — Ganga ghats and eternal flame.",state:"Uttar Pradesh"},
+  {name:"Badrinath",cat:"spiritual",emoji:"⛰",desc:"Himalayan temple at 3,133m — pilgrimage of a lifetime.",state:"Uttarakhand"},
+  {name:"Taj Mahal",cat:"history",emoji:"🕌",desc:"An eternal monument to love — UNESCO World Heritage Site.",state:"Uttar Pradesh"},
+  {name:"Hampi",cat:"history",emoji:"🏛",desc:"Ruins of the mighty Vijayanagara Empire in bouldered landscape.",state:"Karnataka"},
+  {name:"Ajanta Caves",cat:"history",emoji:"🎨",desc:"Rock-cut Buddhist monasteries with 2,000-year-old paintings.",state:"Maharashtra"},
+  {name:"Mysore Palace",cat:"history",emoji:"👑",desc:"Indo-Saracenic grandeur glowing with thousands of lights.",state:"Karnataka"},
+  {name:"Konark Sun Temple",cat:"history",emoji:"☀️",desc:"Chariot-shaped temple dedicated to the Sun God.",state:"Odisha"},
+  {name:"Charminar",cat:"history",emoji:"🌙",desc:"Iconic 16th-century mosque and monument in Hyderabad.",state:"Telangana"},
+  {name:"Kaziranga",cat:"wildlife",emoji:"🦏",desc:"Home to 2/3 of the world's one-horned rhinoceroses.",state:"Assam"},
+  {name:"Jim Corbett",cat:"wildlife",emoji:"🐯",desc:"India's oldest national park — Bengal tiger territory.",state:"Uttarakhand"},
+  {name:"Periyar",cat:"wildlife",emoji:"🐘",desc:"Boat safaris through elephant and bison territory.",state:"Kerala"},
+  {name:"Ranthambore",cat:"wildlife",emoji:"🐆",desc:"Photogenic tigers roaming ancient fort ruins.",state:"Rajasthan"},
+  {name:"Goa Beaches",cat:"beach",emoji:"🏖",desc:"Golden sands, Portuguese heritage and vibrant nightlife.",state:"Goa"},
+  {name:"Andaman Islands",cat:"beach",emoji:"🏝",desc:"Crystal-clear water and pristine coral reefs.",state:"Andaman & Nicobar"},
+  {name:"Varkala",cat:"beach",emoji:"🌅",desc:"Dramatic cliffs above the Arabian Sea — Kerala's gem.",state:"Kerala"},
+  {name:"Marina Beach",cat:"beach",emoji:"🌊",desc:"World's second-longest urban beach — Chennai's heartbeat.",state:"Tamil Nadu"},
+];
+
+const hotels=[
+  {name:"The Oberoi",tier:"luxury",amenities:["AC","WiFi","Pool","Spa","Butler","Breakfast"],price:"₹15,000–₹60,000/night",city:"Delhi"},
+  {name:"Taj Hotels",tier:"luxury",amenities:["AC","WiFi","Pool","Fine Dining","Gym","Concierge"],price:"₹12,000–₹50,000/night",city:"Mumbai"},
+  {name:"OYO Rooms",tier:"budget",amenities:["WiFi","TV","Parking","AC","Water"],price:"₹600–₹2,500/night",city:"Pan India"},
+  {name:"Treebo Hotels",tier:"budget",amenities:["WiFi","Breakfast","AC","Clean Rooms","Support"],price:"₹800–₹3,000/night",city:"Pan India"},
+  {name:"Club Mahindra",tier:"family",amenities:["3-4 Beds","Kids Pool","AC","TV","Pantry","Activity Room"],price:"₹4,000–₹10,000/night",city:"Multiple"},
+  {name:"Sterling Resorts",tier:"family",amenities:["Family Suite","Dining","AC","WiFi","Parking","Playground"],price:"₹3,500–₹8,000/night",city:"Multiple"},
+];
+
+const transport={
+  bus:[
+    {city:"Chennai",operator:"TNSTC / SETC",phone:"044-25330700",tip:"Book via redbus.in for AC sleeper coaches"},
+    {city:"Bangalore",operator:"KSRTC / Airavat",phone:"080-26252625",tip:"Airavat Club Class for inter-city comfort"},
+    {city:"Delhi",operator:"DTC / ISBT",phone:"011-23345555",tip:"Volvo coaches from Kashmere Gate ISBT"},
+    {city:"Mumbai",operator:"MSRTC / Shivneri",phone:"022-23760032",tip:"Shivneri for Pune-Mumbai premium service"},
+  ],
+  train:[
+    {city:"Chennai Central",operator:"Southern Railways",phone:"139",tip:"Vande Bharat Express — fastest in South India"},
+    {city:"New Delhi",operator:"Northern Railways",phone:"139",tip:"Rajdhani for overnight intercity comfort"},
+    {city:"Mumbai CST",operator:"Central Railways",phone:"139",tip:"Deccan Express for budget Pune trips"},
+    {city:"Bangalore City",operator:"SWR",phone:"139",tip:"Book 120 days in advance for Tatkal savings"},
+  ],
+  flight:[
+    {city:"Chennai Airport (MAA)",operator:"IndiGo / Air India",phone:"044-22561122",tip:"Early morning flights cheapest; check Skyscanner"},
+    {city:"CSIA Mumbai (BOM)",operator:"IndiGo / Vistara",phone:"022-66851010",tip:"Terminal 2 — check-in 2 hrs early"},
+    {city:"IGI Delhi (DEL)",operator:"Air India / SpiceJet",phone:"011-25652000",tip:"Metro from Aerocity in 30 mins to city"},
+    {city:"KIA Bangalore (BLR)",operator:"IndiGo / GoAir",phone:"080-66785555",tip:"Airport road traffic — leave 2.5 hrs early"},
+  ],
+  cab:[
+    {city:"Pan India — Ola",operator:"Ola Cabs",phone:"080-46710000",tip:"Ola Outstation for inter-city trips"},
+    {city:"Pan India — Uber",operator:"Uber India",phone:"080-46710001",tip:"UberXL for family groups"},
+    {city:"Chennai — Rapido",operator:"Rapido Bike Taxi",phone:"",tip:"Rapido for quick intra-city rides"},
+    {city:"Rajasthan — Desert Taxi",operator:"Local Tour Ops",phone:"0141-2202626",tip:"Shared cabs to Ajmer, Pushkar from Jaipur"},
+  ]
+};
+
+const galleryData=[
+  {url:"https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=80",caption:"Taj Mahal, Agra"},
+  {url:"https://images.unsplash.com/photo-1609766857697-26c0d9bc6b02?w=600&q=80",caption:"Golden Temple, Amritsar"},
+  {url:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",caption:"Manali Hills"},
+  {url:"https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",caption:"Kerala Backwaters"},
+  {url:"https://images.unsplash.com/photo-1603974372039-adc49044b6bd?w=600&q=80",caption:"Varanasi Ghats"},
+  {url:"https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80",caption:"Ooty Tea Gardens"},
+  {url:"https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80",caption:"Indian Spices"},
+  {url:"https://images.unsplash.com/photo-1599030944572-db1d1d0b3553?w=600&q=80",caption:"Rajasthan Desert"},
+  {url:"https://images.unsplash.com/photo-1545471568-0b2dc9d93f0e?w=600&q=80",caption:"Goa Beach"},
+];
+
+/* ─── LANGUAGE ─── */
+let lang="en";
+const langMap={
+  en:{heroSub:"From snow-capped Himalayas to golden beaches — every corner of India tells a story worth living.",homeTitle:"Plan Your Perfect Journey"},
+  ta:{heroSub:"இமயமலை முதல் தங்க கடற்கரைகள் வரை — இந்தியாவின் ஒவ்வொரு மூலையும் ஒரு கதை சொல்கிறது.",homeTitle:"உங்கள் சரியான பயணத்தை திட்டமிடுங்கள்"},
+  hi:{heroSub:"हिमालय की बर्फ से लेकर सुनहरे समुद्र तटों तक — भारत का हर कोना एक कहानी कहता है।",homeTitle:"अपनी परफेक्ट यात्रा की योजना बनाएं"},
+  ur:{heroSub:"برف پوش ہمالیہ سے سنہری ساحلوں تک — ہندوستان کا ہر کونہ ایک کہانی سناتا ہے۔",homeTitle:"اپنا بہترین سفر منصوبہ بنائیں"}
+};
+
+function toggleLang(){
+  const d=document.getElementById('langDrop');
+  d.style.display=d.style.display==='block'?'none':'block';
+}
+function setLang(l){
+  lang=l;
+  document.getElementById('cur-lang').textContent=l.toUpperCase();
+  document.getElementById('heroSub').textContent=langMap[l].heroSub;
+  document.getElementById('homeTitle').textContent=langMap[l].homeTitle;
+  document.getElementById('langDrop').style.display='none';
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.nav-right')) document.getElementById('langDrop').style.display='none';
+});
+
+/* ─── LOGIN ─── */
+function doLogin(){
+  const e=document.getElementById('loginEmail').value;
+  const p=document.getElementById('loginPass').value;
+  if(!e||!p){showToast('Please enter email and password');return;}
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('app').style.display='block';
+  initParticles();
+  renderAll();
+}
+// Press Enter to login
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('loginScreen').style.display!=='none') doLogin();
+});
+
+/* ─── NAV SCROLL ─── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+/* ─── PARTICLES ─── */
+function initParticles(){
+  const p=document.getElementById('particles');
+  for(let i=0;i<30;i++){
+    const d=document.createElement('div');
+    d.className='particle';
+    d.style.cssText=`left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+    p.appendChild(d);
+  }
+}
+
+/* ─── SECTION ROUTING ─── */
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById('sec-'+id);
+  if(el) el.classList.add('active');
+}
+function scrollToMain(){
+  document.getElementById('mainContent').scrollIntoView({behavior:'smooth'});
+}
+
+/* ─── RENDER ALL ─── */
+function renderAll(){
+  renderDest('all');
+  renderHotels();
+  loadTransport('bus',document.querySelector('.t-tab'));
+  renderGallery();
+  renderWishlist();
+}
+
+/* ─── DESTINATIONS ─── */
+let wishlist=JSON.parse(localStorage.getItem('india_wishlist')||'[]');
+
+function filterDest(cat,el){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderDest(cat);
+}
+
+function renderDest(cat){
+  const filtered=cat==='all'?destinations:destinations.filter(d=>d.cat===cat);
+  const catLabel={nature:'Nature',spiritual:'Spiritual',history:'History',wildlife:'Wildlife',beach:'Beach'};
+  document.getElementById('destGrid').innerHTML=filtered.map((d,i)=>`
+    <div class="dest-card" style="animation-delay:${i*0.05}s">
+      <div class="dest-img">${d.emoji}</div>
+      <div class="dest-body">
+        <span class="dest-badge">${catLabel[d.cat]||d.cat} · ${d.state}</span>
+        <div class="dest-name">${d.name}</div>
+        <div class="dest-desc">${d.desc}</div>
+        <div class="dest-actions">
+          <button class="btn-map" onclick="window.open('https://www.google.com/maps?q=${d.name}+India')">📍 View Map</button>
+          <button class="btn-save ${wishlist.includes(d.name)?'saved':''}" id="wish-${d.name.replace(/\s/g,'')}" onclick="toggleWish('${d.name}','${d.cat}',this)">${wishlist.includes(d.name)?'❤️ Saved':'🤍 Save'}</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleWish(name,cat,btn){
+  if(wishlist.includes(name)){
+    wishlist=wishlist.filter(w=>w!==name);
+    btn.textContent='🤍 Save';btn.classList.remove('saved');
+    showToast(`Removed ${name} from wishlist`);
+  } else {
+    wishlist.push(name);
+    btn.textContent='❤️ Saved';btn.classList.add('saved');
+    showToast(`Added ${name} to wishlist! ❤️`);
+  }
+  localStorage.setItem('india_wishlist',JSON.stringify(wishlist));
+  const wc=document.getElementById('wl-count');
+  if(wc) wc.textContent=wishlist.length>0?`(${wishlist.length})`:'';
+  renderWishlist();
+}
+
+function renderWishlist(){
+  const wc=document.getElementById('wl-count');
+  if(wc) wc.textContent=wishlist.length>0?`(${wishlist.length})`:'';
+  const el=document.getElementById('wishlistContent');
+  if(!el) return;
+  if(wishlist.length===0){
+    el.innerHTML=`<div class="wishlist-empty"><div class="icon">🗺</div><p>No saved destinations yet.</p><p style="font-size:0.85rem;margin-top:0.5rem;color:var(--muted)">Browse destinations and tap 🤍 Save to add them here.</p><button class="btn-primary" style="margin-top:1.5rem" onclick="showSection('destinations')">Explore Destinations</button></div>`;
+  } else {
+    const found=destinations.filter(d=>wishlist.includes(d.name));
+    el.innerHTML=`<div class="wishlist-grid">${found.map(d=>`
+      <div class="wish-card">
+        <div><div class="wish-name">${d.emoji} ${d.name}</div><div class="wish-cat">${d.state}</div></div>
+        <button class="wish-remove" onclick="toggleWish('${d.name}','${d.cat}',document.getElementById('wish-${d.name.replace(/\s/g,'')}'))" title="Remove">✕</button>
+      </div>
+    `).join('')}</div>
+    <button class="btn-primary" style="margin-top:1.5rem" onclick="wishlist=[];localStorage.removeItem('india_wishlist');renderWishlist();renderDest('all')">Clear All</button>`;
+  }
+}
+
+/* ─── HOTELS ─── */
+function renderHotels(){
+  const colors={luxury:'#F5C842',budget:'#138808',family:'#6C63FF'};
+  document.getElementById('hotelGrid').innerHTML=hotels.map(h=>`
+    <div class="hotel-card">
+      <div class="hotel-tier ${h.tier}"></div>
+      <div class="hotel-body">
+        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.4rem">${h.tier.charAt(0).toUpperCase()+h.tier.slice(1)} · ${h.city}</div>
+        <div class="hotel-name">${h.name}</div>
+        <div class="amenity-list">${h.amenities.map(a=>`<span class="amenity">${a}</span>`).join('')}</div>
+        <div class="price-range">${h.price}</div>
+        <div class="hotel-actions">
+          <button onclick="window.open('https://www.google.com/maps/search/${h.name}+hotel+${h.city}')" style="background:rgba(255,153,51,0.1);color:var(--saffron);border:1px solid rgba(255,153,51,0.3)">📍 Find</button>
+          <button onclick="showToast('Redirecting to booking...');window.open('https://www.makemytrip.com/hotels')" style="background:rgba(255,255,255,0.06);color:var(--text);border:1px solid var(--glass-border)">🛏 Book</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─── TRANSPORT ─── */
+function loadTransport(type,el){
+  if(el){document.querySelectorAll('.t-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
+  const data=transport[type]||[];
+  document.getElementById('transportGrid').innerHTML=data.map(d=>`
+    <div class="t-card">
+      <div class="t-city">${d.city}</div>
+      <div style="font-size:0.78rem;color:var(--saffron);margin-bottom:0.4rem">${d.operator}</div>
+      <div class="t-info">💡 ${d.tip}</div>
+      <div class="t-btns">
+        <button onclick="window.open('https://www.google.com/maps/search/${type}+${d.city}')" style="background:rgba(255,153,51,0.1);color:var(--saffron);border:1px solid rgba(255,153,51,0.2)">📍 Map</button>
+        ${d.phone?`<button onclick="window.open('tel:${d.phone}')" style="background:rgba(255,255,255,0.06);color:var(--text);border:1px solid var(--glass-border)">📞 Call</button>`:''}
+        <button onclick="window.open('https://www.redbus.in')" style="background:rgba(255,255,255,0.06);color:var(--text);border:1px solid var(--glass-border)">🔗 Book</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ─── GALLERY ─── */
+function renderGallery(){
+  document.getElementById('galleryGrid').innerHTML=galleryData.map((g,i)=>`
+    <div class="gallery-item" onclick="openLB('${g.url}','${g.caption}')">
+      <img src="${g.url}" alt="${g.caption}" loading="lazy">
+    </div>
+  `).join('');
+}
+
+function openLB(url,cap){
+  document.getElementById('lb-img').src=url;
+  document.getElementById('lb-cap').textContent=cap;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLB(){document.getElementById('lightbox').classList.remove('open')}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeLB()});
+
+/* ─── TRIP PLANNER (AI) ─── */
+async function generatePlan(){
+  const from=document.getElementById('planFrom').value;
+  const to=document.getElementById('planTo').value;
+  const days=document.getElementById('planDays').value;
+  const budget=document.getElementById('planBudget').value;
+  const style=document.getElementById('planStyle').value;
+  const people=document.getElementById('planPeople').value;
+
+  if(!from||!to||!days){showToast('Please fill in From, Destination, and Duration');return;}
+
+  const res=document.getElementById('planResult');
+  res.style.display='block';
+  res.innerHTML=`<div style="text-align:center;color:var(--muted);padding:1rem">
+    <div style="font-size:1.5rem;margin-bottom:0.5rem">✨</div>
+    <div>Crafting your personalized itinerary...</div>
+  </div>`;
+
+  const prompt=`Create a concise travel itinerary for a trip from ${from} to ${to}, India.
+Details: ${days}, ${budget||'any budget'}, ${style||'general'} style, travelling ${people||'solo'}.
+Format: Day-by-day plan with morning/afternoon/evening activities, a local food recommendation per day, and one pro travel tip.
+Keep it practical, India-specific, and exciting. Use emojis. Max 350 words.`;
+
+  try{
+    const r=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})
+    });
+    const data=await r.json();
+    const text=data.content?.map(c=>c.text||'').join('')||'Could not generate plan. Try again.';
+    res.innerHTML=`<div style="line-height:1.8;font-size:0.9rem;white-space:pre-wrap;color:var(--text)">${text}</div>`;
+  } catch(e){
+    res.innerHTML=`<div style="color:var(--muted)">AI planning temporarily unavailable. Please try again.</div>`;
+  }
+}
+
+/* ─── AI CHAT ─── */
+async function sendChat(){
+  const inp=document.getElementById('chatInput');
+  const msg=inp.value.trim();
+  if(!msg) return;
+  inp.value='';
+  appendMsg(msg,'user');
+  await getBotReply(msg);
+}
+function quickChat(msg){
+  appendMsg(msg,'user');
+  getBotReply(msg);
+}
+function appendMsg(text,role){
+  const box=document.getElementById('chatMsgs');
+  const d=document.createElement('div');
+  d.className=`msg ${role}`;
+  d.textContent=text;
+  box.appendChild(d);
+  box.scrollTop=box.scrollHeight;
+  return d;
+}
+async function getBotReply(userMsg){
+  const box=document.getElementById('chatMsgs');
+  const typing=document.createElement('div');
+  typing.className='msg bot typing';
+  typing.innerHTML='<span></span><span></span><span></span>';
+  box.appendChild(typing);
+  box.scrollTop=box.scrollHeight;
+
+  try{
+    const r=await fetch("https://api.anthropic.com/v1/messages",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        model:"claude-sonnet-4-6",max_tokens:1000,
+        system:"You are a friendly and knowledgeable India travel guide. Answer questions about Indian destinations, food, culture, festivals, transport, budget tips, and travel advice. Be concise (2-4 sentences), use emojis naturally, and be genuinely helpful. If asked about Tamil Nadu specifically, be extra detailed.",
+        messages:[{role:"user",content:userMsg}]
+      })
+    });
+    const data=await r.json();
+    typing.remove();
+    const text=data.content?.map(c=>c.text||'').join('')||"I couldn't fetch that info right now. Try rephrasing!";
+    appendMsg(text,'bot');
+  } catch(e){
+    typing.remove();
+    appendMsg("Connection issue. Check your network and try again! 🌐",'bot');
+  }
+}
+
+/* ─── TOAST ─── */
+let toastTimer;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
